@@ -10,9 +10,22 @@
   min-height: 70vh;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 40px;
+  }
+}
+
 .viewerWrapper {
   display: flex;
   justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .viewerWrapper {
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .viewerInfo {
@@ -22,6 +35,13 @@
   align-items: center;
   padding-right: 50px;
   border-right: 2px solid #1b2240;
+}
+
+@media (max-width: 768px) {
+  .viewerInfo {
+    padding-right: 0;
+    border-right: none;
+  }
 }
 
 .viewerInfo .imageWrapper {
