@@ -1,12 +1,41 @@
 import { gql } from "@apollo/client";
 
-export const GET_DETAILS = gql`
-  query myDetails {
+export const GET_VIEWER_DETAILS = gql`
+  query viewerDetails($first: Int, $orderBy: RepositoryOrder) {
     viewer {
       avatarUrl
-      bio
       login
+      name
+      bio
       location
+      websiteUrl
+      repositories(first: $first, orderBy: $orderBy) {
+        nodes {
+          id
+          name
+          stargazerCount
+          forkCount
+          isPrivate
+          updatedAt
+          url
+          description
+
+          languages(first: $first) {
+            nodes {
+              id
+              name
+              color
+            }
+          }
+          repositoryTopics(first: $first) {
+            nodes {
+              topic {
+                name
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;
