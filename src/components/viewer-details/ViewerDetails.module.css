@@ -1,3 +1,42 @@
 .container {
-  background-color: red;
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255, 255, 255),
+    rgba(26, 30, 34, 0.3)
+  );
+  padding: 80px 150px;
+  text-align: center;
+  color: black;
+  min-height: 70vh;
+}
+
+.viewerWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.viewerInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 50px;
+  border-right: 2px solid #1b2240;
+}
+
+.viewerInfo .imageWrapper {
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+  border: 5px solid #1b2240;
+  border-radius: 100%;
+}
+
+.viewerInfo h2 {
+  margin-top: 1em;
+}
+
+.viewerInfo h4 {
+  color: #1b2240;
+  font-size: 1.6rem;
 }

@@ -5,7 +5,7 @@
 
 .hero {
   padding: 40px 80px;
-  height: 400px;
+  height: 300px;
   background-image: url("./assets/github-bg3.png"),
     linear-gradient(to left, rgb(26, 30, 34, 0.6), rgb(26, 30, 34));
   background-size: contain;
@@ -16,12 +16,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
 @media screen and (max-width: 768px) {
   .hero {
-    height: 300px;
+    height: 200px;
     padding: 40px;
     background-image: linear-gradient(
       to bottom,
@@ -33,8 +32,7 @@
 
 .hero h1 {
   font-size: clamp(40px, 8vw, 85px);
-  color: #1b2240;
-  line-height: 1.1;
+  color: #9cdaf0;
 }
 
 .hero h1 > span {
@@ -53,5 +51,4 @@
 
 .hero p {
   font-size: clamp(14px, 8vw, 20px);
-  margin-top: 10px;
 }
