@@ -19,7 +19,7 @@ function ViewerDetailsWrapper() {
     }
   );
 
-  console.log(data, loading, error);
+  console.log(data?.viewer.repositories);
 
   return (
     <div className={styles.container}>
@@ -38,7 +38,33 @@ function ViewerDetailsWrapper() {
             <p>{data.viewer.location}</p>
           </div>
 
-          <div className={styles.viewerRepos}></div>
+          <div className={styles.viewerRepos}>
+            <h3>Top Repos</h3>
+
+            <div className={styles.reposWrapper}>
+              {data.viewer.repositories.nodes.map((repo) => (
+                <a
+                  key={repo.id}
+                  href={repo.url}
+                  target='_blank'
+                  rel='noreferrer'
+                  className={styles.singleRepo}
+                >
+                  <div>
+                    <h4>{repo.name}</h4>
+                    <p>{repo.description}</p>
+                  </div>
+                  <p>
+                    {repo.languages.nodes.slice(0, 1).map((lang) => (
+                      <span key={lang.id} style={{ color: lang.color }}>
+                        {lang.name}
+                      </span>
+                    ))}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       )}
     </div>

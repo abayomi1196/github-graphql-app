@@ -8,27 +8,31 @@ export interface ViewerDetails {
     websiteUrl: string;
 
     repositories: {
-      id: string;
-      name: string;
-      stargazerCount: number;
-      forkCount: number;
-      isPrivate: boolean;
-      updatedAt: Date;
-      url: string;
-      description: string;
-
-      languages: {
+      nodes: {
         id: string;
         name: string;
-        color: string;
-      }[];
+        stargazerCount: number;
+        forkCount: number;
+        isPrivate: boolean;
+        updatedAt: Date;
+        url: string;
+        description: string;
 
-      repositoryTopics: {
-        topic: {
-          name: string;
+        languages: {
+          nodes: {
+            id: string;
+            name: string;
+            color: string;
+          }[];
         };
+
+        repositoryTopics: {
+          topic: {
+            name: string;
+          };
+        }[];
       }[];
-    }[];
+    };
   };
 }
 

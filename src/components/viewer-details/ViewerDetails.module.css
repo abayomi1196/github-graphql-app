@@ -1,8 +1,8 @@
 .container {
   background-image: linear-gradient(
     to bottom,
-    rgb(255, 255, 255),
-    rgba(26, 30, 34, 0.3)
+    rgba(246, 248, 250, 0.5),
+    rgb(246, 248, 250)
   );
   padding: 80px 150px;
   text-align: center;
@@ -18,29 +18,33 @@
 
 .viewerWrapper {
   display: flex;
-  justify-content: space-between;
 }
 
 @media (max-width: 768px) {
   .viewerWrapper {
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    gap: 30px;
   }
 }
 
 .viewerInfo {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding-right: 50px;
   border-right: 2px solid #1b2240;
+  flex: 1;
 }
 
 @media (max-width: 768px) {
   .viewerInfo {
     padding-right: 0;
     border-right: none;
+    padding-bottom: 50px;
+    border-bottom: 2px solid #1b2240;
   }
 }
 
@@ -53,10 +57,85 @@
 }
 
 .viewerInfo h2 {
-  margin-top: 1em;
+  font-size: 2rem;
 }
 
 .viewerInfo h4 {
   color: #1b2240;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+}
+
+.viewerRepos {
+  padding-left: 40px;
+  text-align: left;
+  flex: 6;
+}
+
+@media (max-width: 768px) {
+  .viewerRepos {
+    padding-left: 0;
+    margin-top: 30px;
+  }
+}
+
+.viewerRepos h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5em;
+  color: #24292e;
+}
+
+@media (max-width: 768px) {
+  .viewerRepos h3 {
+    text-align: center;
+  }
+}
+
+.viewerRepos .reposWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2em;
+}
+
+.singleRepo {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem;
+  border-radius: 0.25rem;
+  box-shadow: 0px 10px 30px -15px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  color: #586069;
+  gap: 0.4em;
+  transition: all 0.25s ease;
+}
+
+.singleRepo:hover {
+  box-shadow: 0px 10px 20px -15px rgba(0, 0, 0, 0.2);
+}
+
+.singleRepo h4 {
+  font-size: 1.1rem;
+  color: #24292e;
+  margin-bottom: 1em;
+  transition: all 0.25s ease;
+}
+
+.singleRepo:hover h4 {
+  text-decoration: underline;
+}
+
+.singleRepo p {
+  min-height: 10px;
+  margin: 0.5em 0;
+  font-size: 0.95rem;
+}
+
+.singleRepo > p {
+  font-weight: bold;
+}
+
+.singleRepo span {
+  margin: 0 0.3em;
 }
