@@ -1,4 +1,5 @@
 # Github GraphQL Application
+[![Netlify Status](https://api.netlify.com/api/v1/badges/47226388-5167-4782-975b-e4377811641b/deploy-status)](https://app.netlify.com/sites/octo-list/deploys)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
