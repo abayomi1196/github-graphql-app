@@ -1,10 +1,12 @@
 import styles from "./App.module.css";
 
-import { ViewerDetails } from "components";
+import { ViewerDetails, GitOcto } from "components";
 
 function App() {
   return (
     <div className={styles.container}>
+      <GitOcto />
+
       <header className={styles.hero}>
         <h1>
           Github <span>Profile.</span>
