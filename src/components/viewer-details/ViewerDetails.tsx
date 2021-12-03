@@ -15,11 +15,13 @@ function ViewerDetailsWrapper() {
           field: "STARGAZERS",
           direction: "DESC",
         },
+        languagesOrderBy: {
+          direction: "DESC",
+          field: "SIZE",
+        },
       },
     }
   );
-
-  console.log(data?.viewer.repositories);
 
   return (
     <div className={styles.container}>

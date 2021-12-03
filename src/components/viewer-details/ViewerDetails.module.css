@@ -132,10 +132,6 @@
   font-size: 0.95rem;
 }
 
-.singleRepo > p {
-  font-weight: bold;
-}
-
 .singleRepo span {
-  margin: 0 0.3em;
+  font-weight: bold;
 }

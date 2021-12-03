@@ -42,4 +42,8 @@ export interface ViewerDetailsVars {
     field: string;
     direction: string;
   };
+  languagesOrderBy: {
+    direction: string;
+    field: string;
+  };
 }

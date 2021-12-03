@@ -1,7 +1,11 @@
 import { gql } from "@apollo/client";
 
 export const GET_VIEWER_DETAILS = gql`
-  query viewerDetails($first: Int, $orderBy: RepositoryOrder) {
+  query viewerDetails(
+    $first: Int
+    $orderBy: RepositoryOrder
+    $languagesOrderBy: LanguageOrder
+  ) {
     viewer {
       avatarUrl
       login
@@ -20,7 +24,7 @@ export const GET_VIEWER_DETAILS = gql`
           url
           description
 
-          languages(first: $first) {
+          languages(first: $first, orderBy: $languagesOrderBy) {
             nodes {
               id
               name
