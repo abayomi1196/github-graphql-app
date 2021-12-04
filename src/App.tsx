@@ -1,6 +1,6 @@
 import styles from "./App.module.css";
 
-import { ViewerDetails, GitOcto } from "components";
+import { ViewerDetails, GitOcto, Footer } from "components";
 
 function App() {
   return (
@@ -15,6 +15,8 @@ function App() {
       </header>
 
       <ViewerDetails />
+
+      <Footer />
     </div>
   );
 }
