@@ -1,3 +1,5 @@
+import { ApolloError } from "@apollo/client";
+
 export interface ViewerDetails {
   viewer: {
     avatarUrl: string;
@@ -14,6 +16,17 @@ export interface ViewerDetails {
 
     repositories: {
       totalCount: number;
+    };
+  };
+}
+
+export interface ViewerDetailsVars {
+  privacy: string;
+}
+
+export interface ViewerRepos {
+  viewer: {
+    repositories: {
       nodes: {
         id: string;
         name: string;
@@ -42,7 +55,7 @@ export interface ViewerDetails {
   };
 }
 
-export interface ViewerDetailsVars {
+export interface ViewerReposVars {
   first: number;
   orderBy: {
     field: string;
@@ -53,4 +66,30 @@ export interface ViewerDetailsVars {
     field: string;
   };
   privacy: string;
+}
+
+export interface ReposProps {
+  data: ViewerRepos | undefined;
+  loading: boolean;
+  error: ApolloError | undefined;
+  selectedOption: {
+    label: string;
+    value: string;
+  };
+  options: {
+    label: string;
+    value: string;
+  }[];
+  setSelectedOption: React.Dispatch<
+    React.SetStateAction<{
+      label: string;
+      value: string;
+    }>
+  >;
+}
+
+export interface ProfileProps {
+  data: ViewerDetails | undefined;
+  loading: Boolean;
+  error: ApolloError | undefined;
 }

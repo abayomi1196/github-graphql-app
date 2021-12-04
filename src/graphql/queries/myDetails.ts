@@ -1,12 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const GET_VIEWER_DETAILS = gql`
-  query viewerDetails(
-    $first: Int
-    $orderBy: RepositoryOrder
-    $languagesOrderBy: LanguageOrder
-    $privacy: RepositoryPrivacy
-  ) {
+  query viewerDetails($privacy: RepositoryPrivacy) {
     viewer {
       avatarUrl
       login
@@ -19,6 +14,21 @@ export const GET_VIEWER_DETAILS = gql`
       following {
         totalCount
       }
+      repositories(privacy: $privacy) {
+        totalCount
+      }
+    }
+  }
+`;
+
+export const GET_VIEWER_REPOS = gql`
+  query userRepos(
+    $first: Int
+    $orderBy: RepositoryOrder
+    $languagesOrderBy: LanguageOrder
+    $privacy: RepositoryPrivacy
+  ) {
+    viewer {
       repositories(first: $first, orderBy: $orderBy, privacy: $privacy) {
         totalCount
         nodes {

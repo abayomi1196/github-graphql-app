@@ -5,7 +5,7 @@ function Footer() {
     <div className={styles.footer}>
       Built with{" "}
       <a href='https://reactjs.org/' rel='noreferrer' target='_blank'>
-        ReactJS
+        React
       </a>{" "}
       &bull;{" "}
       <a
@@ -17,15 +17,7 @@ function Footer() {
       </a>{" "}
       &bull;{" "}
       <a href='https://graphql.org/' rel='noreferrer' target='_blank'>
-        GraphQl
-      </a>{" "}
-      &bull;{" "}
-      <a
-        href='https://github.com/css-modules/css-modules'
-        rel='noreferrer'
-        target='_blank'
-      >
-        CSS Modules
+        GraphQL
       </a>{" "}
       &amp; more.
     </div>
