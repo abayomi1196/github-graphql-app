@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { useQuery } from "@apollo/client";
 
 import {
@@ -16,8 +16,13 @@ import {
 import Profile from "../profile/Profile";
 import Repos from "../repos/Repos";
 
+import { OptionsContext } from "context/OptionsContext";
+
 import styles from "./ViewerDetails.module.css";
 function ViewerDetailsWrapper() {
+  const { option } = useContext(OptionsContext);
+
+  // my profile details
   const {
     data: details,
     loading: detailsLoading,
@@ -28,12 +33,7 @@ function ViewerDetailsWrapper() {
     },
   });
 
-  const options = [
-    { label: "stars", value: "STARGAZERS" },
-    { label: "last updated", value: "UPDATED_AT" },
-  ];
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-
+  // my repo details
   const {
     data: repos,
     loading: reposLoading,
@@ -42,7 +42,7 @@ function ViewerDetailsWrapper() {
     variables: {
       first: 5,
       orderBy: {
-        field: selectedOption.value,
+        field: option.value,
         direction: "DESC",
       },
       languagesOrderBy: {
@@ -66,9 +66,7 @@ function ViewerDetailsWrapper() {
           data={repos}
           loading={reposLoading}
           error={reposError}
-          selectedOption={selectedOption}
-          setSelectedOption={setSelectedOption}
-          options={options}
+          type='viewer'
         />
       </div>
     </div>

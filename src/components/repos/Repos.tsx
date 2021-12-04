@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Loader from "react-loader-spinner";
 
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
@@ -6,16 +6,14 @@ import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import Card from "../card/Card";
 import styles from "./Repos.module.css";
 import { ReposProps } from "types";
+import { OptionsContext } from "context/OptionsContext";
 
-function Repos({
-  data,
-  loading,
-  error,
-  options,
-  selectedOption,
-  setSelectedOption,
-}: ReposProps) {
+function Repos({ data, loading, error, type }: ReposProps) {
+  const { option, setNewOption, options } = useContext(OptionsContext);
+
   const [showDropdown, setShowDropdown] = useState(false);
+
+  const user = data && data[type];
 
   return (
     <>
@@ -29,7 +27,7 @@ function Repos({
                 className={styles.dropdownBtn}
                 onClick={() => setShowDropdown((prev) => !prev)}
               >
-                <label>{selectedOption.label}</label>
+                <label>{option.label}</label>
                 {showDropdown ? <AiFillCaretUp /> : <AiFillCaretDown />}
               </button>
               {showDropdown && (
@@ -38,7 +36,7 @@ function Repos({
                     <li
                       key={item.value}
                       onClick={() => {
-                        setSelectedOption(item);
+                        setNewOption(item);
                         setShowDropdown(false);
                       }}
                     >
@@ -64,8 +62,8 @@ function Repos({
         {error && <p className={styles.errorContainer}>Error loading data..</p>}
         <div className={styles.reposWrapper}>
           {!loading &&
-            data &&
-            data.viewer.repositories.nodes.map((repo) => (
+            user &&
+            user.repositories.nodes.map((repo) => (
               <Card key={repo.id} repo={repo} />
             ))}
         </div>

@@ -1,5 +1,7 @@
 import { useContext } from "react";
-import { NameContext } from "./context/NameContext";
+import { NameContext } from "context/NameContext";
+
+import { OptionsContextProvider } from "context/OptionsContext";
 
 import styles from "./App.module.css";
 
@@ -26,7 +28,9 @@ function App() {
         <SearchBar />
       </header>
 
-      {searchTerm ? <SearchedUser /> : <ViewerDetails />}
+      <OptionsContextProvider>
+        {searchTerm ? <SearchedUser /> : <ViewerDetails />}
+      </OptionsContextProvider>
 
       <Footer />
     </div>

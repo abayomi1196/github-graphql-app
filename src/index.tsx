@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import { ApolloProvider } from "@apollo/client";
 import client from "./graphql/ClientInstance";
 
-// searchContext
+// contexts
 import { NameContextProvider } from "./context/NameContext";
 
 import "./index.css";

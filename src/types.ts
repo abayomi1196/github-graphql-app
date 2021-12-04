@@ -29,7 +29,7 @@ export interface UserDetailsVars {
 }
 
 export interface ViewerRepos {
-  viewer: {
+  [key: string]: {
     repositories: {
       nodes: {
         id: string;
@@ -72,6 +72,19 @@ export interface ViewerReposVars {
   privacy: string;
 }
 
+export interface UserReposVars {
+  login: string;
+  first: number;
+  orderBy: {
+    field: string;
+    direction: string;
+  };
+  languagesOrderBy: {
+    direction: string;
+    field: string;
+  };
+}
+
 export interface singleRepo {
   id: string;
   name: string;
@@ -101,20 +114,7 @@ export interface ReposProps {
   data: ViewerRepos | undefined;
   loading: boolean;
   error: ApolloError | undefined;
-  selectedOption: {
-    label: string;
-    value: string;
-  };
-  options: {
-    label: string;
-    value: string;
-  }[];
-  setSelectedOption: React.Dispatch<
-    React.SetStateAction<{
-      label: string;
-      value: string;
-    }>
-  >;
+  type: "user" | "viewer";
 }
 
 export interface ProfileProps {
