@@ -1,6 +1,6 @@
 import styles from "./App.module.css";
 
-import { ViewerDetails, GitOcto, Footer } from "components";
+import { ViewerDetails, GitOcto, Footer, SearchBar } from "components";
 
 function App() {
   return (
@@ -11,7 +11,8 @@ function App() {
         <h1>
           Github <span>Profile.</span>
         </h1>
-        <p>Search your github username.</p>
+
+        <SearchBar />
       </header>
 
       <ViewerDetails />

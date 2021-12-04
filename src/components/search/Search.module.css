@@ -1,0 +1,74 @@
+.searchBar {
+  display: grid;
+  grid-row-gap: 13px;
+  width: 100%;
+  align-self: center;
+  max-width: 800px;
+}
+
+.inputWrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.inputWrapper input {
+  padding: 1.5em 1em;
+  color: #666;
+  box-shadow: 2px 3px 28px 1px rgba(0, 0, 0, 0.1);
+  border: 0px solid transparent;
+  border-radius: 5px;
+  height: 40px;
+  font-size: 20px;
+  width: 100%;
+  transition: all 0.25s ease;
+}
+
+@media (max-width: 768px) {
+  .inputWrapper input {
+    font-size: 18px;
+  }
+}
+
+.inputWrapper input::placeholder {
+  color: #b3b3b3;
+}
+
+.inputWrapper input:focus {
+  outline: none;
+  box-shadow: 2px 3px 20px 1px rgba(0, 0, 0, 0.3);
+}
+
+.inputWrapper button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  border: none;
+  width: 95px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: #b3b3b3;
+  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  transition: all 0.25s ease;
+}
+
+.inputWrapper button:hover {
+  background-color: #e0dede;
+}
+
+@media (max-width: 768px) {
+  .inputWrapper button {
+    width: 80px;
+    font-size: 13px;
+  }
+}
+
+.searchBar small {
+  text-align: right;
+  font-size: 14px;
+  color: #b3b3b3;
+}
