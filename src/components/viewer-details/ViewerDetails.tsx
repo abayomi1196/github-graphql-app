@@ -4,6 +4,8 @@ import { GET_VIEWER_DETAILS } from "graphql/queries/myDetails";
 import { ViewerDetails, ViewerDetailsVars } from "types";
 
 import styles from "./ViewerDetails.module.css";
+import { GoLocation } from "react-icons/go";
+import { AiOutlineCalendar } from "react-icons/ai";
 
 function ViewerDetailsWrapper() {
   const { data, loading, error } = useQuery<ViewerDetails, ViewerDetailsVars>(
@@ -37,7 +39,22 @@ function ViewerDetailsWrapper() {
 
             <h2>{data.viewer.name}</h2>
             <h4>@{data.viewer.login}</h4>
-            <p>{data.viewer.location}</p>
+            <p>
+              <GoLocation /> {data.viewer.location}
+            </p>
+            <p>
+              <AiOutlineCalendar />
+              Joined{" "}
+              {new Date(data.viewer.createdAt).toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
+            <div className={styles.infoCounts}>
+              <p>{data.viewer.followers.totalCount} Followers</p>
+              <p>{data.viewer.following.totalCount} Following</p>
+            </div>
           </div>
 
           <div className={styles.viewerRepos}>

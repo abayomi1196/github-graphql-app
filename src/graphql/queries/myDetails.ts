@@ -10,10 +10,16 @@ export const GET_VIEWER_DETAILS = gql`
       avatarUrl
       login
       name
-      bio
       location
-      websiteUrl
+      createdAt
+      followers {
+        totalCount
+      }
+      following {
+        totalCount
+      }
       repositories(first: $first, orderBy: $orderBy) {
+        totalCount
         nodes {
           id
           name

@@ -3,11 +3,17 @@ export interface ViewerDetails {
     avatarUrl: string;
     login: string;
     name: string;
-    bio: string;
     location: string;
-    websiteUrl: string;
+    createdAt: Date;
+    followers: {
+      totalCount: number;
+    };
+    following: {
+      totalCount: number;
+    };
 
     repositories: {
+      totalCount: number;
       nodes: {
         id: string;
         name: string;
