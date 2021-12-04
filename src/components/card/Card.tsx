@@ -31,14 +31,14 @@ function Card({ repo }: CardProps) {
           {repo.stargazerCount > 0 && (
             <span>
               <RiStarSFill />
-              {repo.stargazerCount}
+              {new Intl.NumberFormat("en").format(repo.stargazerCount)}
             </span>
           )}
 
           {repo.forkCount > 0 && (
             <span>
               <AiOutlineFork />
-              {repo.forkCount}
+              {new Intl.NumberFormat("en").format(repo.forkCount)}
             </span>
           )}
         </div>

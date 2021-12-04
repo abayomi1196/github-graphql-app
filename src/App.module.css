@@ -5,9 +5,9 @@
 
 .hero {
   padding: 40px 80px;
-  height: 300px;
+  height: 400px;
   background-image: url("./assets/github-bg3.png"),
-    linear-gradient(to left, rgb(26, 30, 34, 0.6), rgb(26, 30, 34));
+    linear-gradient(to left, rgba(26, 30, 34, 0.6), rgb(26, 30, 34));
   background-size: contain;
   background-repeat: no-repeat;
   background-position: bottom right;
@@ -18,9 +18,9 @@
   justify-content: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .hero {
-    height: 200px;
+    height: 300px;
     padding: 40px;
     background-image: linear-gradient(
       to bottom,

@@ -42,9 +42,20 @@ function Profile({ data, loading, error, type }: ProfileProps) {
               })}
             </p>
             <div className={styles.infoCounts}>
-              <p>{user.followers.totalCount} Followers</p>
-              <p>{user.following.totalCount} Following</p>
-              <p>{user.repositories.totalCount} Repos</p>
+              <p>
+                {new Intl.NumberFormat("en").format(user.followers.totalCount)}{" "}
+                Followers
+              </p>
+              <p>
+                {new Intl.NumberFormat("en").format(user.following.totalCount)}{" "}
+                Following
+              </p>
+              <p>
+                {new Intl.NumberFormat("en").format(
+                  user.repositories.totalCount
+                )}{" "}
+                Repos
+              </p>
             </div>
           </>
         )}

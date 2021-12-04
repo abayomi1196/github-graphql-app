@@ -54,8 +54,8 @@ function Repos({ data, loading, error, type }: ReposProps) {
             <Loader
               type='Bars'
               color='rgba(0, 118, 255, 0.2)'
-              width={"50px"}
-              height={"50px"}
+              width={"40px"}
+              height={"40px"}
             />
           </p>
         )}
