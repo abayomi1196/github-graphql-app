@@ -15,7 +15,7 @@ import { NameContext } from "context/NameContext";
 import { OptionsContext } from "context/OptionsContext";
 import Repos from "components/repos/Repos";
 
-function SearchedViewerDetails() {
+function SearchedUser() {
   const { searchTerm } = useContext(NameContext);
   const { option } = useContext(OptionsContext);
 
@@ -70,4 +70,4 @@ function SearchedViewerDetails() {
   );
 }
 
-export default SearchedViewerDetails;
+export default SearchedUser;
