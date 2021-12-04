@@ -164,6 +164,24 @@
   font-size: 0.95rem;
 }
 
+.singleRepo > p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0.5em 0 0;
+}
+
+.singleRepo .repoCounts {
+  display: flex;
+  gap: 0.6em;
+}
+
+.repoCounts span {
+  display: flex;
+  align-items: center;
+}
+
 .singleRepo span {
   font-weight: bold;
 }

@@ -5,7 +5,8 @@ import { ViewerDetails, ViewerDetailsVars } from "types";
 
 import styles from "./ViewerDetails.module.css";
 import { GoLocation } from "react-icons/go";
-import { AiOutlineCalendar } from "react-icons/ai";
+import { AiOutlineCalendar, AiOutlineFork } from "react-icons/ai";
+import { RiStarSFill } from "react-icons/ri";
 
 function ViewerDetailsWrapper() {
   const { data, loading, error } = useQuery<ViewerDetails, ViewerDetailsVars>(
@@ -79,6 +80,22 @@ function ViewerDetailsWrapper() {
                         {lang.name}
                       </span>
                     ))}
+
+                    <div className={styles.repoCounts}>
+                      {repo.stargazerCount > 0 && (
+                        <span>
+                          <RiStarSFill />
+                          {repo.stargazerCount}
+                        </span>
+                      )}
+
+                      {repo.forkCount > 0 && (
+                        <span>
+                          <AiOutlineFork />
+                          {repo.forkCount}
+                        </span>
+                      )}
+                    </div>
                   </p>
                 </a>
               ))}
