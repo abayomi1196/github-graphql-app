@@ -7,21 +7,25 @@ import styles from "./ViewerDetails.module.css";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineCalendar, AiOutlineFork } from "react-icons/ai";
 import { RiStarSFill } from "react-icons/ri";
+import { useState } from "react";
 
 function ViewerDetailsWrapper() {
+  const [orderBy, setOrderBy] = useState("STARGAZERS");
+
   const { data, loading, error } = useQuery<ViewerDetails, ViewerDetailsVars>(
     GET_VIEWER_DETAILS,
     {
       variables: {
         first: 10,
         orderBy: {
-          field: "STARGAZERS",
+          field: orderBy,
           direction: "DESC",
         },
         languagesOrderBy: {
           direction: "DESC",
           field: "SIZE",
         },
+        privacy: "PUBLIC",
       },
     }
   );
@@ -59,7 +63,20 @@ function ViewerDetailsWrapper() {
           </div>
 
           <div className={styles.viewerRepos}>
-            <h3>Top Repos</h3>
+            <h3>
+              Top Repos{" "}
+              <span>
+                by{" "}
+                <select
+                  value={orderBy}
+                  onChange={(e) => setOrderBy(e.target.value)}
+                >
+                  <option value='STARGAZERS'>stars</option>
+                  <option value='UPDATED_AT'>last updated</option>
+                  <option value='CREATED_AT'>created at</option>
+                </select>
+              </span>
+            </h3>
 
             <div className={styles.reposWrapper}>
               {data.viewer.repositories.nodes.map((repo) => (

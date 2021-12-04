@@ -116,6 +116,17 @@
   color: #24292e;
 }
 
+.viewerRepos h3 > span {
+  font-weight: normal;
+  font-size: 16px;
+  display: inline-block;
+  margin-left: 1em;
+}
+
+.viewerRepos h3 > span > select {
+  margin-left: 0.3em;
+}
+
 @media (max-width: 768px) {
   .viewerRepos h3 {
     text-align: center;

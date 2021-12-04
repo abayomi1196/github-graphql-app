@@ -5,6 +5,7 @@ export const GET_VIEWER_DETAILS = gql`
     $first: Int
     $orderBy: RepositoryOrder
     $languagesOrderBy: LanguageOrder
+    $privacy: RepositoryPrivacy
   ) {
     viewer {
       avatarUrl
@@ -18,7 +19,7 @@ export const GET_VIEWER_DETAILS = gql`
       following {
         totalCount
       }
-      repositories(first: $first, orderBy: $orderBy) {
+      repositories(first: $first, orderBy: $orderBy, privacy: $privacy) {
         totalCount
         nodes {
           id

@@ -52,4 +52,5 @@ export interface ViewerDetailsVars {
     direction: string;
     field: string;
   };
+  privacy: string;
 }
