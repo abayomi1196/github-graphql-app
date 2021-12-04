@@ -5,13 +5,18 @@ import ReactDOM from "react-dom";
 import { ApolloProvider } from "@apollo/client";
 import client from "./graphql/ClientInstance";
 
+// searchContext
+import { NameContextProvider } from "./context/NameContext";
+
 import "./index.css";
 import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <NameContextProvider>
+        <App />
+      </NameContextProvider>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root")

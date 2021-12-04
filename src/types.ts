@@ -1,7 +1,7 @@
 import { ApolloError } from "@apollo/client";
 
 export interface ViewerDetails {
-  viewer: {
+  [key: string]: {
     avatarUrl: string;
     login: string;
     name: string;
@@ -22,6 +22,10 @@ export interface ViewerDetails {
 
 export interface ViewerDetailsVars {
   privacy: string;
+}
+
+export interface UserDetailsVars {
+  login: string;
 }
 
 export interface ViewerRepos {
@@ -117,4 +121,5 @@ export interface ProfileProps {
   data: ViewerDetails | undefined;
   loading: Boolean;
   error: ApolloError | undefined;
+  type: "user" | "viewer";
 }

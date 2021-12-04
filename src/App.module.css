@@ -33,6 +33,7 @@
 .hero h1 {
   font-size: clamp(40px, 8vw, 85px);
   color: #9cdaf0;
+  margin-bottom: 0.2em;
 }
 
 .hero h1 > span {
@@ -41,8 +42,4 @@
 
 .hero img {
   width: 300px;
-}
-
-.hero p {
-  font-size: clamp(14px, 8vw, 20px);
 }

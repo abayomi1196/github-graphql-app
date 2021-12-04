@@ -5,7 +5,9 @@ import { AiOutlineCalendar } from "react-icons/ai";
 import styles from "./Profile.module.css";
 import { ProfileProps } from "types";
 
-function Profile({ data, loading, error }: ProfileProps) {
+function Profile({ data, loading, error, type }: ProfileProps) {
+  const user = data && data[type];
+
   return (
     <>
       {loading && (
@@ -20,29 +22,29 @@ function Profile({ data, loading, error }: ProfileProps) {
       )}
       {error && <p className={styles.errorContainer}>error...</p>}
       <div className={styles.viewerInfo}>
-        {!loading && data && (
+        {!loading && user && (
           <>
             <div className={styles.imageWrapper}>
-              <img src={data.viewer.avatarUrl} alt={data.viewer.name} />
+              <img src={user.avatarUrl} alt={user.name} />
             </div>
 
-            <h2>{data.viewer.name}</h2>
-            <h4>@{data.viewer.login}</h4>
+            <h2>{user.name}</h2>
+            <h4>@{user.login}</h4>
             <p>
-              <GoLocation /> {data.viewer.location}
+              <GoLocation /> {user.location}
             </p>
             <p>
               <AiOutlineCalendar />
               Joined{" "}
-              {new Date(data.viewer.createdAt).toLocaleDateString(undefined, {
+              {new Date(user.createdAt).toLocaleDateString(undefined, {
                 year: "numeric",
                 month: "long",
               })}
             </p>
             <div className={styles.infoCounts}>
-              <p>{data.viewer.followers.totalCount} Followers</p>
-              <p>{data.viewer.following.totalCount} Following</p>
-              <p>{data.viewer.repositories.totalCount} Repos</p>
+              <p>{user.followers.totalCount} Followers</p>
+              <p>{user.following.totalCount} Following</p>
+              <p>{user.repositories.totalCount} Repos</p>
             </div>
           </>
         )}

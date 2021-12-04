@@ -1,14 +1,18 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 
+import { NameContext } from "context/NameContext";
 import styles from "./Search.module.css";
 
 function Search() {
+  const { updateSearchTerm } = useContext(NameContext);
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [searchTerm, setSearchTerm] = useState("");
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    updateSearchTerm(searchTerm.trim());
     inputRef.current?.blur();
   }
 
@@ -26,6 +30,7 @@ function Search() {
         <button
           onClick={() => {
             setSearchTerm("");
+            updateSearchTerm("");
           }}
           type='button'
         >

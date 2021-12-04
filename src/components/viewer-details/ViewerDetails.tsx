@@ -56,7 +56,12 @@ function ViewerDetailsWrapper() {
   return (
     <div className={styles.container}>
       <div className={styles.viewerWrapper}>
-        <Profile data={details} loading={detailsLoading} error={detailsError} />
+        <Profile
+          data={details}
+          loading={detailsLoading}
+          error={detailsError}
+          type='viewer'
+        />
         <Repos
           data={repos}
           loading={reposLoading}

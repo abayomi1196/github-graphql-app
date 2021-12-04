@@ -1,8 +1,19 @@
+import { useContext } from "react";
+import { NameContext } from "./context/NameContext";
+
 import styles from "./App.module.css";
 
-import { ViewerDetails, GitOcto, Footer, SearchBar } from "components";
+import {
+  ViewerDetails,
+  SearchedUser,
+  GitOcto,
+  Footer,
+  SearchBar,
+} from "components";
 
 function App() {
+  const { searchTerm } = useContext(NameContext);
+
   return (
     <div className={styles.container}>
       <GitOcto />
@@ -15,7 +26,7 @@ function App() {
         <SearchBar />
       </header>
 
-      <ViewerDetails />
+      {searchTerm ? <SearchedUser /> : <ViewerDetails />}
 
       <Footer />
     </div>
