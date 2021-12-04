@@ -1,28 +1,14 @@
-import { useQuery } from "@apollo/client";
 import Loader from "react-loader-spinner";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineCalendar } from "react-icons/ai";
 
-import { GET_VIEWER_DETAILS } from "graphql/queries/myDetails";
-
-import { ViewerDetails, ViewerDetailsVars } from "types";
-
 import styles from "./Profile.module.css";
+import { ProfileProps } from "types";
 
-function Profile() {
-  const {
-    data: details,
-    loading: detailsLoading,
-    error: detailsError,
-  } = useQuery<ViewerDetails, ViewerDetailsVars>(GET_VIEWER_DETAILS, {
-    variables: {
-      privacy: "PUBLIC",
-    },
-  });
-
+function Profile({ data, loading, error }: ProfileProps) {
   return (
     <>
-      {detailsLoading && (
+      {loading && (
         <p className={styles.loadingContainer}>
           <Loader
             type='Bars'
@@ -32,34 +18,31 @@ function Profile() {
           />
         </p>
       )}
-      {detailsError && <p className={styles.errorContainer}>error...</p>}
+      {error && <p className={styles.errorContainer}>error...</p>}
       <div className={styles.viewerInfo}>
-        {!detailsLoading && details && (
+        {!loading && data && (
           <>
             <div className={styles.imageWrapper}>
-              <img src={details.viewer.avatarUrl} alt={details.viewer.name} />
+              <img src={data.viewer.avatarUrl} alt={data.viewer.name} />
             </div>
 
-            <h2>{details.viewer.name}</h2>
-            <h4>@{details.viewer.login}</h4>
+            <h2>{data.viewer.name}</h2>
+            <h4>@{data.viewer.login}</h4>
             <p>
-              <GoLocation /> {details.viewer.location}
+              <GoLocation /> {data.viewer.location}
             </p>
             <p>
               <AiOutlineCalendar />
               Joined{" "}
-              {new Date(details.viewer.createdAt).toLocaleDateString(
-                undefined,
-                {
-                  year: "numeric",
-                  month: "long",
-                }
-              )}
+              {new Date(data.viewer.createdAt).toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "long",
+              })}
             </p>
             <div className={styles.infoCounts}>
-              <p>{details.viewer.followers.totalCount} Followers</p>
-              <p>{details.viewer.following.totalCount} Following</p>
-              <p>{details.viewer.repositories.totalCount} Repos</p>
+              <p>{data.viewer.followers.totalCount} Followers</p>
+              <p>{data.viewer.following.totalCount} Following</p>
+              <p>{data.viewer.repositories.totalCount} Repos</p>
             </div>
           </>
         )}

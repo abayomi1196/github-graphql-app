@@ -13,8 +13,8 @@ import {
   ViewerReposVars,
 } from "types";
 
-import Profile from "./profile/Profile";
-import Repos from "./repos/Repos";
+import Profile from "../profile/Profile";
+import Repos from "../repos/Repos";
 
 import styles from "./ViewerDetails.module.css";
 function ViewerDetailsWrapper() {

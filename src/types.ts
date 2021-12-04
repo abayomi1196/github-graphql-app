@@ -68,6 +68,31 @@ export interface ViewerReposVars {
   privacy: string;
 }
 
+export interface singleRepo {
+  id: string;
+  name: string;
+  stargazerCount: number;
+  forkCount: number;
+  isPrivate: boolean;
+  updatedAt: Date;
+  url: string;
+  description: string;
+
+  languages: {
+    nodes: {
+      id: string;
+      name: string;
+      color: string;
+    }[];
+  };
+
+  repositoryTopics: {
+    topic: {
+      name: string;
+    };
+  }[];
+}
+
 export interface ReposProps {
   data: ViewerRepos | undefined;
   loading: boolean;

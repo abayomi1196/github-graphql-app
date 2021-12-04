@@ -1,41 +1,21 @@
 import { useState } from "react";
-import { useQuery } from "@apollo/client";
 import Loader from "react-loader-spinner";
 
-import { AiOutlineFork, AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
-import { RiStarSFill } from "react-icons/ri";
+import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 
-import { GET_VIEWER_REPOS } from "graphql/queries/myDetails";
-import { ViewerRepos, ViewerReposVars } from "types";
-
+import Card from "../card/Card";
 import styles from "./Repos.module.css";
+import { ReposProps } from "types";
 
-function Repos() {
-  const options = [
-    { label: "stars", value: "STARGAZERS" },
-    { label: "last updated", value: "UPDATED_AT" },
-  ];
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+function Repos({
+  data,
+  loading,
+  error,
+  options,
+  selectedOption,
+  setSelectedOption,
+}: ReposProps) {
   const [showDropdown, setShowDropdown] = useState(false);
-
-  const {
-    data: repos,
-    loading: reposLoading,
-    error: reposError,
-  } = useQuery<ViewerRepos, ViewerReposVars>(GET_VIEWER_REPOS, {
-    variables: {
-      first: 5,
-      orderBy: {
-        field: selectedOption.value,
-        direction: "DESC",
-      },
-      languagesOrderBy: {
-        direction: "DESC",
-        field: "SIZE",
-      },
-      privacy: "PUBLIC",
-    },
-  });
 
   return (
     <>
@@ -71,7 +51,7 @@ function Repos() {
           </span>
         </h3>
 
-        {reposLoading && (
+        {loading && (
           <p className={styles.loadingContainer}>
             <Loader
               type='Bars'
@@ -81,48 +61,12 @@ function Repos() {
             />
           </p>
         )}
-        {reposError && (
-          <p className={styles.errorContainer}>Error loading data..</p>
-        )}
+        {error && <p className={styles.errorContainer}>Error loading data..</p>}
         <div className={styles.reposWrapper}>
-          {!reposLoading &&
-            repos &&
-            repos.viewer.repositories.nodes.map((repo) => (
-              <a
-                key={repo.id}
-                href={repo.url}
-                target='_blank'
-                rel='noreferrer'
-                className={styles.singleRepo}
-              >
-                <div>
-                  <h4>{repo.name}</h4>
-                  <p>{repo.description}</p>
-                </div>
-                <p>
-                  {repo.languages.nodes.slice(0, 1).map((lang) => (
-                    <span key={lang.id} style={{ color: lang.color }}>
-                      {lang.name}
-                    </span>
-                  ))}
-
-                  <div className={styles.repoCounts}>
-                    {repo.stargazerCount > 0 && (
-                      <span>
-                        <RiStarSFill />
-                        {repo.stargazerCount}
-                      </span>
-                    )}
-
-                    {repo.forkCount > 0 && (
-                      <span>
-                        <AiOutlineFork />
-                        {repo.forkCount}
-                      </span>
-                    )}
-                  </div>
-                </p>
-              </a>
+          {!loading &&
+            data &&
+            data.viewer.repositories.nodes.map((repo) => (
+              <Card key={repo.id} repo={repo} />
             ))}
         </div>
       </div>
