@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_VIEWER_DETAILS } from "graphql/queries/myDetails";
 
@@ -5,20 +6,29 @@ import { ViewerDetails, ViewerDetailsVars } from "types";
 
 import styles from "./ViewerDetails.module.css";
 import { GoLocation } from "react-icons/go";
-import { AiOutlineCalendar, AiOutlineFork } from "react-icons/ai";
+import {
+  AiOutlineCalendar,
+  AiOutlineFork,
+  AiFillCaretDown,
+  AiFillCaretUp,
+} from "react-icons/ai";
 import { RiStarSFill } from "react-icons/ri";
-import { useState } from "react";
 
 function ViewerDetailsWrapper() {
-  const [orderBy, setOrderBy] = useState("STARGAZERS");
+  const options = [
+    { label: "stars", value: "STARGAZERS" },
+    { label: "last updated", value: "UPDATED_AT" },
+  ];
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const { data, loading, error } = useQuery<ViewerDetails, ViewerDetailsVars>(
     GET_VIEWER_DETAILS,
     {
       variables: {
-        first: 10,
+        first: 5,
         orderBy: {
-          field: orderBy,
+          field: selectedOption.value,
           direction: "DESC",
         },
         languagesOrderBy: {
@@ -53,12 +63,12 @@ function ViewerDetailsWrapper() {
               {new Date(data.viewer.createdAt).toLocaleDateString(undefined, {
                 year: "numeric",
                 month: "long",
-                day: "numeric",
               })}
             </p>
             <div className={styles.infoCounts}>
               <p>{data.viewer.followers.totalCount} Followers</p>
               <p>{data.viewer.following.totalCount} Following</p>
+              <p>{data.viewer.repositories.totalCount} Repos</p>
             </div>
           </div>
 
@@ -67,14 +77,30 @@ function ViewerDetailsWrapper() {
               Top Repos{" "}
               <span>
                 by{" "}
-                <select
-                  value={orderBy}
-                  onChange={(e) => setOrderBy(e.target.value)}
-                >
-                  <option value='STARGAZERS'>stars</option>
-                  <option value='UPDATED_AT'>last updated</option>
-                  <option value='CREATED_AT'>created at</option>
-                </select>
+                <span className={styles.dropdown}>
+                  <button
+                    className={styles.dropdownBtn}
+                    onClick={() => setShowDropdown((prev) => !prev)}
+                  >
+                    <label>{selectedOption.label}</label>
+                    {showDropdown ? <AiFillCaretUp /> : <AiFillCaretDown />}
+                  </button>
+                  {showDropdown && (
+                    <ul className={styles.dropdownList}>
+                      {options.map((item) => (
+                        <li
+                          key={item.value}
+                          onClick={() => {
+                            setSelectedOption(item);
+                            setShowDropdown(false);
+                          }}
+                        >
+                          {item.label}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </span>
               </span>
             </h3>
 
